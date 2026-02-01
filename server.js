@@ -1,7 +1,11 @@
 const http = require("http");
 const { information } = require("./data");
 const { product } = require("./product");
-const { productDetail } = require("./productDetail");
+const {
+  productDetail,
+
+  productDetail_view,
+} = require("./productDetail");
 
 // http
 //   .createServer((request, resp) => {
@@ -66,6 +70,22 @@ const server = http.createServer((request, response) => {
         _status: false,
         _massage: "Page Not Page",
         _data: productDetail,
+      };
+      response.end(JSON.stringify(result));
+    }
+  } else if (request.url == "/productDetail-view") {
+    if (productDetail_view != "") {
+      const result = {
+        _status: true,
+        _massage: "Page successfully loaded",
+        _data: productDetail_view,
+      };
+      response.end(JSON.stringify(result));
+    } else {
+      const result = {
+        _status: false,
+        _massage: "Page Not Page",
+        _data: productDetail_view,
       };
       response.end(JSON.stringify(result));
     }
